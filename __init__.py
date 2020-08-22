@@ -9,9 +9,9 @@ class RequestPhpSite(MycroftSkill):
     def handle_site_php_request(self, message):
         try:
           url = self.settings.get('url')
-          payload = {'username': self.settings.get('username'),'password': self.settings.get('password')}
-          post = requests.Session().post(url, data=payload)
-          r = requests.Session().get(url)
+          username = self.settings.get('username')
+          password = self.settings.get('password')
+          requests.post(url, auth=(username, password))
           self.speak_dialog('site.php.request')
         except:
           self.speak_dialog('error')
